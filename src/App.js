@@ -1,4 +1,6 @@
 // import logo from './logo.svg';
+//using redux
+
 import './App.css';
 import { useState } from 'react';
 
