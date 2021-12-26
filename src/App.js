@@ -1,33 +1,37 @@
-// import logo from './logo.svg';
-import './App.css';
-import { useState } from 'react';
-
-const App = () =>{
-  const [curNum,updNum] = useState(0); // hook declaration needs to be inside function
-  const incNum = () =>{
-    updNum(curNum+1); //issue with ++ and -- ?
-  };
-  const decNum = () =>{
-    if(curNum>0){
-      updNum(curNum-1);
+import React from 'react';
+import Context from './Context';
+import Counter from './component/Counter';
+import CounterTitle from './component/CounterTitle';
+class App extends React.Component{
+    state = {
+        counter:0,
     }
-    else
-      alert('The least value of count can be 0.')
-  };
-  return(
-    // React Fragment
-    <> 
-      <div className='main'>
-        <div className='centerDiv'>
-          <h1>{curNum}</h1>
-          <div className='btn'>
-            <button onClick={incNum}>Increase</button>
-            <button onClick={decNum}>Decrease</button>
-          </div>
-        </div>
-      </div>
-    </>
-  )
+    increment = () => {
+        this.setState({
+            counter: this.state.counter + 1,
+        });
+    }
+    decrement = () => {
+        this.setState({
+            counter: this.state.counter - 1,
+        })
+    }
+    render(){
+        return(
+            <>
+                <Context.Provider value={{counter: this.state.counter}}>
+                        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
+                            <CounterTitle/>
+                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', margin: '30px'}}>
+                            <button onClick={this.increment}>Increment</button>
+                            <Counter/>
+                            <button onClick={this.decrement}>Decrement</button>
+                            </div>
+                        </div>
+                    )
+                    </Context.Provider>
+            </>
+        );
+    }
 }
 export default App;
-// to use state variable with functions we use hooks, in class we can use state and props directly
