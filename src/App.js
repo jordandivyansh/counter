@@ -6,16 +6,16 @@ class App extends React.Component{
     state = {
         counter:0,
     }
-    increment = () => {
-        this.setState({
-            counter: this.state.counter + 1,
-        });
-    }
-    decrement = () => {
-        this.setState({
-            counter: this.state.counter - 1,
-        })
-    }
+    // increment = () => {
+    //     this.setState({
+    //         counter: this.state.counter + 1,
+    //     });
+    // }
+    // decrement = () => {
+    //     this.setState({
+    //         counter: this.state.counter - 1,
+    //     })
+    // }
     render(){
         return(
             <>
@@ -23,9 +23,17 @@ class App extends React.Component{
                         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
                             <CounterTitle/>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', margin: '30px'}}>
-                            <button onClick={this.increment}>Increment</button>
+                            <button onClick={
+                                ()=>this.setState({
+                                    counter: this.state.counter + 1,
+                                })
+                            }>Increment</button>
                             <Counter/>
-                            <button onClick={this.decrement}>Decrement</button>
+                            <button onClick={
+                                ()=>this.setState({
+                                    counter: this.state.counter-1,
+                                })
+                            }>Decrement</button>
                             </div>
                         </div>
                     )
