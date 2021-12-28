@@ -4,22 +4,14 @@ import Counter from './component/Counter';
 import CounterTitle from './component/CounterTitle';
 class App extends React.Component{
     state = {
+        title: 'Welcome to counter application!',
         counter:0,
     }
-    // increment = () => {
-    //     this.setState({
-    //         counter: this.state.counter + 1,
-    //     });
-    // }
-    // decrement = () => {
-    //     this.setState({
-    //         counter: this.state.counter - 1,
-    //     })
-    // }
     render(){
         return(
             <>
-                <Context.Provider value={{counter: this.state.counter}}>
+                <Context.Provider value={
+                    {counter: this.state.counter, title: this.state.title}}>
                         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
                             <CounterTitle/>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', margin: '30px'}}>
