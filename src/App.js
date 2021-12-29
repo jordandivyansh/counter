@@ -7,7 +7,7 @@ import { Decrement } from './component/Decrement';
 const App=()=>{
     
     const [counter,setCounter]=useState(0);
-    const [title,setTitle]=useState("Counter")
+    const [title]=useState("Counter")
 
     const incrementHandler=()=>{
        setCounter(prevCounter=>prevCounter+1)
