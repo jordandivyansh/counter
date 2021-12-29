@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
-import Context from '../Context';
+import {AppState} from '../Context';
 
 export default function CounterTitle(){
-    const mycontext = useContext(Context);
+    const mycontext = useContext(AppState);
     return <h1>{mycontext.title}</h1>;
 }

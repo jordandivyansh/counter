@@ -1,37 +1,37 @@
-import React from 'react';
-import Context from './Context';
+import React, { useState } from 'react';
+import {AppState} from './Context';
 import Counter from './component/Counter';
 import CounterTitle from './component/CounterTitle';
-class App extends React.Component{
-    state = {
-        title: 'Welcome to counter application!',
-        counter:0,
+import {Increment} from './component/Increment';
+import { Decrement } from './component/Decrement';
+const App=()=>{
+    
+    const [counter,setCounter]=useState(0);
+    const [title,setTitle]=useState("Counter")
+
+    const incrementHandler=()=>{
+       setCounter(prevCounter=>prevCounter+1)
     }
-    render(){
+    const decrementHandler=()=>{
+        setCounter(prevCounter=>prevCounter-1)
+    }
+
         return(
             <>
-                <Context.Provider value={
-                    {counter: this.state.counter, title: this.state.title}}>
+                <AppState.Provider value={
+                    {counter: counter, title: title,incrementState:incrementHandler, decrementState:decrementHandler}}>
                         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
                             <CounterTitle/>
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', margin: '30px'}}>
-                            <button onClick={
-                                ()=>this.setState({
-                                    counter: this.state.counter + 1,
-                                })
-                            }>Increment</button>
+                            <Increment/>
+                            
                             <Counter/>
-                            <button onClick={
-                                ()=>this.setState({
-                                    counter: this.state.counter-1,
-                                })
-                            }>Decrement</button>
+                            <Decrement />
                             </div>
                         </div>
                     )
-                    </Context.Provider>
+                    </AppState.Provider>
             </>
         );
-    }
 }
 export default App;
